@@ -1,41 +1,45 @@
-const path = require("path");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: './src/index.tsx',
   output: {
-    path: path.join(__dirname, "dist"),
-    filename: "index.bundle.js",
+    path: path.join(__dirname, 'dist'),
+    filename: 'index.bundle.js',
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['.tsx', '.ts', '.js'],
   },
-  devServer: { static: path.join(__dirname, "src") },
+  devServer: { static: path.join(__dirname, 'src') },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"],
+        use: ['babel-loader'],
       },
       {
         test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
-        use: ["ts-loader"],
+        use: ['ts-loader'],
       },
       {
         test: /\.(css|scss)$/,
-        use: ["style-loader", "css-loader"],
+        use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        use: ["file-loader"],
+        test: /\.(jpg|jpeg|png|gif)$/,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
       },
     ],
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
+      template: './src/index.html',
     }),
   ],
 };
