@@ -1,5 +1,13 @@
 import React from 'react';
 
+import { GlobalStyle } from './styles/global.styles';
+import Header from './components/Header';
+
 export default function App(): JSX.Element {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <GlobalStyle />
+      <Header />
+    </>
+  );
 }
